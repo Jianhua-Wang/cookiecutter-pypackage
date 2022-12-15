@@ -38,6 +38,8 @@ packages = [
 python = ">=3.6.2,<4.0"
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 click = "8.0.1"
+{%- elif cookiecutter.command_line_interface|lower == 'typer' %}
+typer = "<0.7.0"
 {%- endif %}
 
 black  = { version = "^21.5b2", optional = true}
@@ -90,6 +92,10 @@ doc = [
 {% if cookiecutter.command_line_interface|lower == 'click' -%}
 [tool.poetry.scripts]
 {{ cookiecutter.project_slug }} = '{{ cookiecutter.pkg_name }}.cli:main'
+
+{% elif cookiecutter.command_line_interface|lower == 'typer' %}
+[tool.poetry.scripts]
+{{ cookiecutter.project_slug }} = '{{ cookiecutter.pkg_name }}.cli:app'
 
 {% endif -%}
 [tool.black]
