@@ -34,11 +34,11 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.7,<4.0"
+python = ">=3.7,<3.12"
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 click = "8.0.1"
 {%- elif cookiecutter.command_line_interface|lower == 'typer' %}
-typer = "<0.7.0"
+typer = "^0.7.0"
 {%- endif %}
 
 black = {version = ">=22.3.0", optional = true}
@@ -53,23 +53,21 @@ pytest-cov  = { version = "^2.12.0", optional = true}
 tox  = { version = "^3.20.1", optional = true}
 virtualenv  = { version = "^20.2.2", optional = true}
 pip  = { version = "^20.3.1", optional = true}
-jinja2  = { version = "<3.1.0", optional = true}
-mkdocs  = { version = "^1.1.2", optional = true}
-mkdocs-include-markdown-plugin  = { version = "^1.0.0", optional = true}
-mkdocs-material  = { version = "^6.1.7", optional = true}
-mkdocstrings  = { version = "^0.15.2", optional = true}
-mkdocs-material-extensions  = { version = "^1.0.1", optional = true}
 twine  = { version = "^3.3.0", optional = true}
-mkdocs-autorefs = {version = "^0.2.1", optional = true}
 pre-commit = {version = "^2.12.0", optional = true}
 toml = {version = "^0.10.2", optional = true}
 bump2version = {version = "^1.0.1", optional = true}
+mkdocs = {version = "^1.4.2", optional = true}
+mkdocs-include-markdown-plugin = {version = "^4.0.3", optional = true}
+mkdocs-material = {version = "^8.5.11", optional = true}
+mkdocs-autorefs = {version = "^0.4.1", optional = true}
+mkdocstrings = {version = "^0.19.1", extras = ["python"], optional = true}
+mkdocs-material-extensions = {version = "^1.1.1", optional = true}
 
 [tool.poetry.extras]
 test = [
     "pytest",
     "black",
-    "jinjia2",
     "isort",
     {%- if cookiecutter.use_mypy == 'y' %}
     "mypy",
@@ -102,7 +100,7 @@ doc = [
 [tool.black]
 line-length = 120
 skip-string-normalization = true
-target-version = ['py36', 'py37', 'py38']
+target-version = ['py39', 'py310', 'py311']
 include = '\.pyi?$'
 exclude = '''
 /(

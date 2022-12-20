@@ -18,6 +18,7 @@ if __name__ == "__main__":
 {% elif cookiecutter.command_line_interface|lower == 'typer' -%}
 import typer
 
+app = typer.Typer()
 
 def main():
     """Main entrypoint."""
@@ -27,5 +28,5 @@ def main():
 
 
 if __name__ == "__main__":
-   typer.run(main)
+   app(main)
 {%- endif %}
