@@ -23,35 +23,41 @@ theme:
     - navigation.instant
     - navigation.tabs.sticky
 markdown_extensions:
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-  - pymdownx.critic
-  - pymdownx.caret
-  - pymdownx.mark
-  - pymdownx.tilde
-  - pymdownx.tabbed
-  - attr_list
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.highlight:
-      linenums: false
-  - pymdownx.superfences
-  - pymdownx.inlinehilite
+  - admonition
   - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.magiclink
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist
   - admonition
   - toc:
-      baselevel: 2
+      # baselevel: 2
       permalink: true
-      slugify: !!python/name:pymdownx.slugs.uslugify
+      # slugify: !!python/name:pymdownx.slugs.uslugify
   - meta
 plugins:
   - include-markdown
   - search:
       lang: en
   - mkdocstrings:
-      watch:
-        - {{ cookiecutter.project_slug }}
+      handlers:
+      python:
+        import:
+        - https://docs.python.org/3/objects.inv
+        - https://installer.readthedocs.io/en/stable/objects.inv  # demonstration purpose in the docs
+        - https://mkdocstrings.github.io/autorefs/objects.inv
+        options:
+          docstring_style: numpy
+          docstring_options:
+            ignore_init_summary: yes
+          merge_init_into_class: yes
+          show_submodules: yes
+      # watch:
+      #   - {{ cookiecutter.project_slug }}
 extra:
   social:
     - icon: fontawesome/brands/twitter
